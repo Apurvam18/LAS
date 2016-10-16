@@ -14,13 +14,13 @@ course.route('/')
 	var course=Course(req.body);
 	course.save(req.body,function (err,data) {
 		if(err){
-			//console.log(err);
+			
 			res.json({status:false,message:err});
 		}else{
-			//console.log(data);
+			
 			Admin.findByIdAndUpdate(req.user._id, { $push: {"courses": data._id }},{new:true},function (err,userData){
 					if(err){
-						//console.log(err);
+						
 						res.json({status:false,message:err});
 					}else{
 						res.send({status:true,message:data});
